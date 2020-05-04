@@ -38,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
         Intent i=getIntent();
         String key=i.getStringExtra("key");
-        getSupportActionBar().setTitle(key+" News");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(key+" news");
         articlesDB = this.openOrCreateDatabase("Articles", MODE_PRIVATE, null);
         articlesDB.execSQL("CREATE TABLE IF NOT EXISTS articles (id INTEGER PRIMARY KEY, articleId, INTEGER, title VARCHAR, content VARCHAR)");
         DownloadTask task = new DownloadTask();
@@ -155,5 +156,10 @@ public class MainActivity extends AppCompatActivity {
 
             updateListView();
         }
+    }
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 }

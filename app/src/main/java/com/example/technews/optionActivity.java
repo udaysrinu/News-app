@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,12 +19,22 @@ public class optionActivity extends AppCompatActivity {
     ArrayList<String> titles = new ArrayList<>
             (Arrays.asList("business", "entertainment", "health","science","sports","technology"));
 
-
+    public void dropIn(View v)
+    {
+        ImageView counter = (ImageView)v;
+        int tapcount = Integer.parseInt(counter.getTag().toString());
+        Toast.makeText(getApplicationContext(),
+                titles.get(tapcount)+ " news", Toast.LENGTH_SHORT).show();
+        Intent intent=new Intent(getApplicationContext(), MainActivity.class);
+        intent.putExtra("key", titles.get(tapcount));
+        startActivity(intent);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_option);
-        GridView grid = (GridView) findViewById(R.id.grid);
+        /*GridView grid = (GridView) findViewById(R.id.grid);
+
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, titles);
 
@@ -37,8 +48,7 @@ public class optionActivity extends AppCompatActivity {
                 intent.putExtra("key", ((TextView) v).getText());
                 startActivity(intent);
             }
-        });
-
+        });*/
 
 
     }
